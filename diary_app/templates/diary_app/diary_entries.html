@@ -1,0 +1,35 @@
+{% extends 'diary_app/base.html' %}
+
+{% block content %}
+<h1>Diary Entries for {{ date }}</h1>
+
+{% if entries %}
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Content</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.content }}</td>
+            <td>
+                {% if forloop.counter0 < 2 %}
+                    <a href="{% url 'edit_entry' entry.id %}">Edit</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No diary entries found for the given date.</p>
+{% endif %}
+
+<h2>Add a new entry</h2>
+<a href="{% url 'new_entry' %}">New Entry</a>
+{% endblock %}

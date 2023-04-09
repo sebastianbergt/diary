@@ -1,0 +1,33 @@
+{% extends 'diary_app/base.html' %}
+
+{% block content %}
+<h1>Search Diary Entries</h1>
+
+<form method="get">
+    <label for="q">Search:</label>
+    <input type="text" id="q" name="q" value="{{ query }}" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if entries %}
+    <h2>Search Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.content }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% elif query %}
+    <p>No diary entries found for the search query "{{ query }}".</p>
+{% endif %}
+{% endblock %}
