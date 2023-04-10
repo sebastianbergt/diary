@@ -1,13 +1,23 @@
 {% extends 'diary_app/base.html' %}
 
 {% block content %}
-<h1>New Diary Entry</h1>
+    <h1 class="text-2xl font-semibold mb-4">New Diary Entry</h1>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Entry</button>
-</form>
+    <form method="post" class="bg-white shadow-md rounded-md p-6">
+        {% csrf_token %}
+        <div class="space-y-4">
+            {% for field in form %}
+                <div>
+                    <label for="{{ field.auto_id }}" class="block text-gray-700">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-red-500">{{ field.errors.0 }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 mt-4">Save Entry</button>
+    </form>
 
-<a href="{% url 'diary_entries' %}">Back to Diary Entries</a>
+    <a href="{% url 'diary_entries' %}" class="block mt-4 text-blue-500 hover:text-blue-700">Back to Diary Entries</a>
 {% endblock %}

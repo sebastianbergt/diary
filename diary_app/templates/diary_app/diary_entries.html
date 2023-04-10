@@ -1,35 +1,35 @@
 {% extends 'diary_app/base.html' %}
 
 {% block content %}
-<h1>Diary Entries for {{ date }}</h1>
+    <h1 class="text-2xl font-semibold mb-4">Diary Entries for {{ date }}</h1>
 
-{% if entries %}
-<table>
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Content</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for entry in entries %}
-        <tr>
-            <td>{{ entry.date }}</td>
-            <td>{{ entry.content }}</td>
-            <td>
-                {% if forloop.counter0 < 2 %}
-                    <a href="{% url 'edit_entry' entry.id %}">Edit</a>
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>No diary entries found for the given date.</p>
-{% endif %}
+    {% if entries %}
+        <table class="min-w-full table-auto bg-white shadow-md rounded-md">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="px-4 py-2">Date</th>
+                    <th class="px-4 py-2">Content</th>
+                    <th class="px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-300">
+                {% for entry in entries %}
+                    <tr>
+                        <td class="px-4 py-2">{{ entry.date }}</td>
+                        <td class="px-4 py-2">{{ entry.content }}</td>
+                        <td class="px-4 py-2">
+                            {% if forloop.counter0 < 2 %}
+                                <a href="{% url 'edit_entry' entry.id %}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-gray-700">No diary entries found for the given date.</p>
+    {% endif %}
 
-<h2>Add a new entry</h2>
-<a href="{% url 'new_entry' %}">New Entry</a>
+    <h2 class="text-xl font-semibold mt-8 mb-2">Add a new entry</h2>
+    <a href="{% url 'new_entry' %}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">New Entry</a>
 {% endblock %}
