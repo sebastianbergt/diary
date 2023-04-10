@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn runs a django app
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=www-data
+ExecStart=/usr/bin/env gunicorn -w 1 diary_project.wsgi
+WorkingDirectory=/opt/
+
+[Install]
+WantedBy=multi-user.target
