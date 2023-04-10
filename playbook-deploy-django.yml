@@ -72,6 +72,20 @@
         path: /etc/nginx/nginx.conf
         regexp: 'server_name.*'
         replace: "server_name {{ ansible_default_ipv4.address }}"
+    - name: copy nginx https key
+      copy:
+        src: ansible-files/nginx_https.key
+        dest: /etc/ssl/
+        owner: www-data
+        group: www-data
+        mode: 0600
+    - name: copy nginx https crt
+      copy:
+        src: ansible-files/nginx_https.crt
+        dest: /etc/ssl/
+        owner: www-data
+        group: www-data
+        mode: 0600
     - systemd:
         daemon_reload: true
     - systemd:
