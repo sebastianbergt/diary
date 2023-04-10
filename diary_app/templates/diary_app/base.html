@@ -11,7 +11,8 @@
 <body class="bg-gray-100">
     <header class="bg-white shadow-sm">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 items-center">
+                <img src="{% static 'images/android-chrome-192x192.png' %}" alt="Logo" class="h-8 w-8 mr-2 scale-75">
                 <a href="{% url 'diary_entries' %}" class="text-gray-700 hover:text-gray-900">Diary Entries</a>
                 <a href="{% url 'search' %}" class="text-gray-700 hover:text-gray-900">Search</a>
             </div>
@@ -31,7 +32,7 @@
     </main>
     <footer class="bg-white shadow-sm">
         <div class="container mx-auto px-4 py-4">
-            <!-- Add your footer content here -->
+            &copy; 2023 Sebastian Bergt
         </div>
     </footer>
 </body>
