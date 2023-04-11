@@ -1,5 +1,7 @@
 # diary
 
+Allows each user to create one private diary entry a day.
+
 ## SQL setup
 
 
