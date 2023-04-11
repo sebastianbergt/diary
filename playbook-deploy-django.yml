@@ -71,7 +71,7 @@
     - replace:
         path: /etc/nginx/nginx.conf
         regexp: 'server_name.*'
-        replace: "server_name {{ ansible_default_ipv4.address }}"
+        replace: "server_name {{ ansible_default_ipv4.address }};"
     - name: copy nginx https key
       copy:
         src: ansible-files/nginx_https.key
