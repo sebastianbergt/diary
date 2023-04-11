@@ -40,10 +40,16 @@
         group: www-data
         mode: 0644
       notify:
-    - replace:
+    - name: configure allowed hosts ip address for django project
+      replace:
         path: /opt/diary_project/settings.py
         regexp: 'ALLOWED_HOSTS.*'
         replace: "ALLOWED_HOSTS = ['{{ ansible_default_ipv4.address }}']"
+    - name: disable debug for django project for production
+      replace:
+        path: /opt/diary_project/settings.py
+        regexp: 'DEBUG.*'
+        replace: "DEBUG = False"
     - name: copy django app
       copy:
         src: diary_app
