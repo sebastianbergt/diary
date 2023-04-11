@@ -43,6 +43,15 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
   -addext "subjectAltName=DNS:192.168.1.150,DNS:192.168.1.150,IP:192.168.1.150"
 ```
 
+## Your Settings
+
+in `diary_project` copy `settings_example.py` to `settings.py` and tweek it to your needs.
+
+This function helps to generate your SECRET_KEY
+```shell
+python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
 ## Deployment
 
 ```shell
